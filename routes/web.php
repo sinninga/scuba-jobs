@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Listing;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,19 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('listings', [
         'heading' => 'Latest Listings', 
-        'listings' => [
-            [
-                'id' => 1,
-                'title' => 'Listing One',
-                'description' => 'This is the job description
-                of the job that is being described'
-            ],
-            [
-                'id' => 2,
-                'title' => 'Listing Two',
-                'description' => 'This is the job description
-                of the job that is being described'
-            ]
-        ]
+        'listings' => Listing::all()
     ]);
 });
