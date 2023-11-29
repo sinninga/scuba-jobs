@@ -7,13 +7,13 @@
                 ><i class="fa-solid fa-arrow-left"></i> Back
 </a>
 <div class="mx-4">
-    <x-card class="p-30 bg-black">
+    <x-card class="p-10">
         <div
             class="flex flex-col items-center justify-center text-center"
         >
             <img
                 class="w-48 mr-6 mb-6"
-                src="{{asset('images/no-image')}}"
+                src="{{asset('images/no-image.png')}}"
                 alt=""
             />
 
