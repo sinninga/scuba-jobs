@@ -18,3 +18,4 @@ use App\Models\Listing;
 Route::get('/', [ListingController::class,'index']);
 
 Route::get('/listings/{listing}', [ListingController::class,'show']);
+
