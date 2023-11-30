@@ -10,7 +10,7 @@
             <p class="mb-4">Edit: {{$listing->title}}</p>
         </header>
     
-        <form method="POST" action="/listings/{{$listing}}" enctype="multipart/form-data">
+        <form method="POST" action="/listings/{{$listing->id}}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-6">
@@ -90,7 +90,7 @@
                     type="text"
                     class="border border-gray-200 rounded p-2 w-full"
                     name="website"
-                    value="{{$listing->company}}"
+                    value="{{$listing->website}}"
                 />
                 @error('website')
                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -156,7 +156,7 @@
                 <button
                     class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
                 >
-                    Create Gig
+                    Update Gig
                 </button>
     
                 <a href="/" class="text-black ml-4"> Back </a>
