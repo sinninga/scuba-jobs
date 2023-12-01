@@ -39,6 +39,8 @@ class ListingController extends Controller
             $formFields['logo'] = $request->file('logo')->store('logos', 'public');
         }
 
+        $formFields['user_id'] = auth()->id();
+
         Listing::create($formFields);
 
         return redirect('/')->with('message', 'Listing created successfully!');
@@ -71,5 +73,10 @@ class ListingController extends Controller
     public function destroy(Listing $listing) {
         $listing->delete();
         return redirect('/')->with('message', 'Listing deleted successfully');
+    }
+
+    //Manage listings
+    public function manage() {
+        return view('listings.manage', ['listings' => auth()->user()->listings()->get()]);
     }
 }
