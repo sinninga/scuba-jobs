@@ -1,10 +1,12 @@
 @props(['listing'])
 
-<x-card>
+<x-card class="hover:bg-sky-400 cursor-pointer">
+    <div class="card-container">
+    <a href="/listings/{{$listing->id}}">
     <div class="flex">
         <img
             class="hidden w-48 mr-6 md:block"
-            src="{{ $listing->logo ? asset('storage/' . $listing->logo) : asset('/images/no-image.png')}}"
+            src="{{ $listing->logo ? asset('storage/' . $listing->logo) : asset('/images/manta.jpeg')}}"
             alt=""
         />
         <div>
@@ -17,5 +19,7 @@
                 <i class="fa-solid fa-location-dot"></i> {{$listing->location}}
             </div>
         </div>
+    </div>
+    </a>
     </div>
 </x-card>
