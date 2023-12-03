@@ -1,6 +1,6 @@
 @props(['listing'])
 
-<x-card class="hover:bg-sky-400 cursor-pointer">
+<x-card class="hover:bg-sky-100 cursor-pointer">
     <div class="card-container">
     <a href="/listings/{{$listing->id}}">
     <div class="flex">
