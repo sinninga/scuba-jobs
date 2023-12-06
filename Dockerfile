@@ -49,8 +49,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Install Laravel dependencies
 RUN composer install --optimize-autoloader --no-dev
 
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
-
 # Expose port 80 to the outside world
 EXPOSE 80
 
