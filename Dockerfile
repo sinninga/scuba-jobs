@@ -1,35 +1,58 @@
+# Use an official PHP runtime as a parent image
 FROM php:8.1.2-apache
 
-RUN apt-get update && apt-get install -y \
-    libonig-dev \
-    && docker-php-ext-install mbstring
+# Set the working directory to /var/www/html
+WORKDIR /var/www/html
 
-RUN docker-php-ext-install pdo
-RUN docker-php-ext-install pdo_mysql
-RUN docker-php-ext-install mbstring
+# Install required dependencies
+RUN apt-get update
+
+RUN apt-get install -y \
+    libonig-dev
+RUN apt-get install -y \
+    libxml2-dev \
+    zip \
+    unzip \
+    libzip-dev
+
 RUN a2enmod rewrite
 
 
-COPY apache-config.conf /etc/apache2/sites-available/000-default.conf
+# Install required PHP extensions
+RUN docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install mbstring
+RUN docker-php-ext-install exif
+RUN docker-php-ext-install pcntl
+RUN docker-php-ext-install bcmath
+# RUN docker-php-ext-install gd
+RUN docker-php-ext-install zip
+RUN apt-get install -y default-mysql-client
 
-WORKDIR /var/www/html
-    
-COPY . /var/www/html
 
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN service apache2 restart
+RUN apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-
-ENV DB_CONNECTION=mysql
-ENV DB_HOST=mysql
-ENV DB_PORT=3306
-ENV DB_DATABASE=scubajobs
-ENV DB_USERNAME=adam
-ENV DB_PASSWORD=marshall25
-
-ENV APACHE_DOCUMENT_ROOT /var/www/html/public
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
+
+
+# Copy the current directory contents into the container at /var/www/html
+COPY . /var/www/html
+
+# Install Composer globally
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+
+# Install Laravel dependencies
+RUN composer install --optimize-autoloader --no-dev
+
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Expose port 80 to the outside world
 EXPOSE 80
 
+# Start Apache
 CMD ["apache2-foreground"]

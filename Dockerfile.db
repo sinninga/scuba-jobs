@@ -1,0 +1,16 @@
+# Use an official MySQL runtime as a parent image
+FROM mysql:latest
+
+# Set the root password for MySQL
+ENV MYSQL_ROOT_PASSWORD=root_password
+
+# Create a database and user for your Laravel app
+ENV MYSQL_DATABASE=scubajobs
+ENV MYSQL_USER=adam
+ENV MYSQL_PASSWORD=marshall25
+
+# Expose port 3306 to the outside world
+EXPOSE 3306
+
+# Run the MySQL server
+# CMD ["mysqld"]
