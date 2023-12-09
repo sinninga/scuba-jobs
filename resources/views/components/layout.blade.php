@@ -25,7 +25,7 @@
                 },
             };
         </script>
-        <title>ScubaJobs | Find Scuba Jobs & Internships</title>
+        <title>ScubaJobs | Find Diving Jobs & Internships</title>
     </head>
     <body class="mb-48">
         <nav class="flex justify-between items-center mb-4">
