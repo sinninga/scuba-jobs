@@ -27,11 +27,11 @@
                 <h3 class="text-3xl font-bold mb-4">
                     Job Description
                 </h3>
-                <div class="text-lg space-y-6">
+                <div class="text-lg space-y-6 w-3/5 mx-auto">
                     {{$listing->description}}
                     <a
                         href="mailto:{{$listing->email}}"
-                        class="block bg-sky-500 text-white mt-6 py-2 rounded-xl hover:opacity-80"
+                        class="block bg-sky-500 text-white mt-6 py-2 rounded-xl hover:opacity-80 w-3/4 mx-auto"
                         ><i class="fa-solid fa-envelope"></i>
                         Contact Employer</a
                     >
@@ -39,7 +39,7 @@
                     <a
                         href="{{$listing->website}}"
                         target="_blank"
-                        class="block bg-black text-white py-2 rounded-xl hover:opacity-80"
+                        class="block bg-black text-white py-2 rounded-xl hover:opacity-80 w-3/4 mx-auto"
                         ><i class="fa-solid fa-globe"></i> Visit
                         Website</a
                     >
