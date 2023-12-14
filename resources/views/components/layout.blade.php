@@ -28,7 +28,7 @@
         <title>MolaMola | Find Diving Jobs & Internships</title>
     </head>
     <body class="mb-48">
-        <nav class="flex justify-between items-center mb-4">
+        <nav class="flex justify-between items-center mb-2 mt-2">
             <a href="/"
                 ><img class="w-24" src="{{asset('images/mola.jpeg')}}" alt="" class="logo"
             /></a>
